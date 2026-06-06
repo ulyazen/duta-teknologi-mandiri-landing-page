@@ -1,0 +1,25 @@
+{
+  "id": "TASK-002",
+  "title": "Design tokens + bilingual content + 12 section components + Nav + Footer",
+  "module": "ui",
+  "description": "Mirror the dashboard's design system 1:1, add id/en content, ship the 12 section components, Nav, Footer, and LocaleSwitcher.",
+  "status": "pending",
+  "assignments": {
+    "product_owner": "in-progress",
+    "system_architect": "pending",
+    "design_engineer": "pending",
+    "fullstack": "pending",
+    "qa": "pending"
+  },
+  "timestamps": {
+    "pending": "2026-06-07T00:00:00.000Z",
+    "scoped": null,
+    "designed": null,
+    "implemented": null,
+    "tested": null,
+    "reviewed": null,
+    "approved": null
+  },
+  "git_branch": "feature/TASK-002-scope",
+  "complexity": "L"
+}
