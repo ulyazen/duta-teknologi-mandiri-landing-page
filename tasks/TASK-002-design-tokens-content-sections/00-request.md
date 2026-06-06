@@ -43,3 +43,21 @@ that the architect and fullstack can fire without re-deriving anything.
   - `feat(i18n): add id/en content and locale config`
   - `feat(ui): add nav, footer, and 12 section components`
   - `chore(agent): add frontend worktree instructions to AGENTS.md`
+
+
+## Company profile anchor (new in this revision)
+
+The landing page must picture the company profile of **Duta Teknologi
+Mandiri (DTM)**. Read `.agents/context/company-profile.md` in the
+landing-page repo for the source of truth. The 12 section components
+must be filled with DTM-specific copy, not generic placeholders.
+
+Concrete implications for `01-scoped.md`:
+- The "Affected Entities" list must include `src/content/{id,en}.ts`
+  and the per-section copy files if any.
+- Add a new affected entity: `.agents/context/company-profile.md`
+  (the source of truth for company facts).
+- Add an open question if the architect needs to know whether any
+  section should be a pure capability claim vs. a specific fact claim.
+- Add a new success criterion: "every section's copy is DTM-specific
+  and grounded in `company-profile.md`; no invented facts."
