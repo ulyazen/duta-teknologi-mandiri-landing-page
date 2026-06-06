@@ -29,3 +29,5 @@ dist-ssr
 # Agent scripts outputs
 .tsbuildinfo
 *.tsbuildinfo
+screenshots
+.shots/

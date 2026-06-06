@@ -8,7 +8,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "NODE_OPTIONS=--max-old-space-size=512 tsc -b && NODE_OPTIONS=--max-old-space-size=512 vite build && NODE_OPTIONS=--max-old-space-size=512 npx tsx scripts/prerender.ts",
+    "build": "NODE_OPTIONS=--max-old-space-size=512 tsc -b && NODE_OPTIONS=--max-old-space-size=512 vite build && NODE_OPTIONS=--max-old-space-size=512 npx tsx scripts/copy-fonts.ts && NODE_OPTIONS=--max-old-space-size=512 npx tsx scripts/prerender.ts",
+    "postbuild": "NODE_OPTIONS=--max-old-space-size=512 npx tsx scripts/copy-fonts.ts",
+    "copy-fonts": "NODE_OPTIONS=--max-old-space-size=512 npx tsx scripts/copy-fonts.ts",
     "start": "vite preview --port 5000 --host",
     "lint": "eslint . --max-warnings=0",
     "test": "vitest run",

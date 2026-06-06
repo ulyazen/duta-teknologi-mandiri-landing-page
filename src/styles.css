@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/500.css";
-@import "@fontsource/space-grotesk/400.css";
+/* Self-host only the latin subsets to keep the bundle small. Vite is
+ * configured (scripts/copy-fonts.ts + postbuild) to emit the woff/woff2
+ * files referenced by these @imports into dist/assets/files/. */
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/space-grotesk/latin-400.css";
 
 @theme {
   --color-primary: #000000;
@@ -62,10 +65,12 @@
     border-radius: var(--radius-card);
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   }
   .card-bordered:hover {
     border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px -16px rgba(23, 23, 28, 0.15);
   }
   .btn-ghost {
     background: transparent;
@@ -124,14 +129,17 @@
   }
   .label-uppercase {
     font-family: var(--font-mono);
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.28px;
+    letter-spacing: 0.32px;
     color: var(--color-muted);
+    font-weight: 500;
   }
-  /* Cohere-style gradient text for display headings */
+  /* Cohere-style gradient text for display headings. The gradient is
+   * intentionally subtle on light surfaces (matches the reference) and
+   * becomes invisible on dark surfaces. */
   .text-gradient {
-    background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background: linear-gradient(180deg, #050505 0%, #2a2a30 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -150,18 +158,72 @@
     height: 1px;
     background: var(--color-accent);
   }
+  /* Subtle dot grid for the hero background. Sits behind the heading
+   * at low opacity to add visual depth without competing with the
+   * foreground. */
+  .bg-dot-grid {
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: 0 0;
+  }
+  /* Reveal-on-scroll utility. Elements start invisible + slightly
+   * translated; the IntersectionObserver in main.tsx adds .is-revealed
+   * when they enter the viewport, triggering a CSS transition. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-stagger.is-revealed > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-stagger.is-revealed > *:nth-child(1) { transition-delay: 0ms; }
+  .reveal-stagger.is-revealed > *:nth-child(2) { transition-delay: 60ms; }
+  .reveal-stagger.is-revealed > *:nth-child(3) { transition-delay: 120ms; }
+  .reveal-stagger.is-revealed > *:nth-child(4) { transition-delay: 180ms; }
+  .reveal-stagger.is-revealed > *:nth-child(5) { transition-delay: 240ms; }
+  .reveal-stagger.is-revealed > *:nth-child(6) { transition-delay: 300ms; }
+  .reveal-stagger.is-revealed > *:nth-child(7) { transition-delay: 360ms; }
+  .reveal-stagger.is-revealed > *:nth-child(8) { transition-delay: 420ms; }
 }
 
 @layer utilities {
-  .text-display-hero { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1; letter-spacing: -0.025em; }
-  .text-display-xl { font-size: clamp(2rem, 4vw, 3.75rem); line-height: 1.05; letter-spacing: -0.02em; }
-  .text-display-lg { font-size: clamp(1.75rem, 3vw, 3rem); line-height: 1.1; letter-spacing: -0.015em; }
-  .text-display-md { font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; }
+  .text-display-hero {
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+  }
+  .text-display-xl { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1; letter-spacing: -0.03em; font-weight: 500; }
+  .text-display-lg { font-size: clamp(2rem, 3.6vw, 3.25rem); line-height: 1.05; letter-spacing: -0.02em; font-weight: 500; }
+  .text-display-md { font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; font-weight: 500; }
   .animate-fade-in {
     animation: fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .animate-fade-up {
     animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  /* Cohere-style big decorative number, used in section corners and
+   * the dark CTA banner. Sits at low opacity and points the eye. */
+  .display-number {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 0.8;
+    letter-spacing: -0.04em;
+    color: var(--color-snow);
   }
 }
 
@@ -176,7 +238,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in,
-  .animate-fade-up {
+  .animate-fade-up,
+  .reveal,
+  .reveal-stagger > * {
     animation: none;
+    transition: none;
+    opacity: 1;
+    transform: none;
   }
 }

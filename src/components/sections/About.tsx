@@ -16,26 +16,42 @@ export function About({ section }: AboutProps) {
     <section
       id={section.sectionKey.toLowerCase()}
       aria-labelledby={`${section.sectionKey.toLowerCase()}-title`}
-      className="border-b border-border bg-snow"
+      className="relative border-b border-border bg-snow"
     >
-      <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-2 md:py-32">
-        <div>
-          <p className="label-uppercase mb-4 flex items-center gap-2">
-            <span className="inline-block h-px w-6 bg-primary" aria-hidden="true" />
-            About
-          </p>
-          <h2 id={`${section.sectionKey.toLowerCase()}-title`} className="text-display-lg font-normal text-primary">
+      <span
+        className="display-number pointer-events-none absolute right-6 top-6 text-[10rem] opacity-60 md:right-12 md:top-10 md:text-[14rem]"
+        aria-hidden="true"
+      >
+        02
+      </span>
+      <div className="relative mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-2 md:py-32">
+        <div className="reveal">
+          <p className="label-uppercase accent-rule mb-6">About</p>
+          <h2 id={`${section.sectionKey.toLowerCase()}-title`} className="text-display-lg text-primary">
             {section.title}
           </h2>
-          {section.subtitle && <p className="mt-4 text-lg text-muted">{section.subtitle}</p>}
-          <p className="mt-6 text-base leading-relaxed text-primary">{section.body}</p>
+          {section.subtitle && (
+            <p className="mt-4 text-lg leading-relaxed text-secondary">
+              {section.subtitle}
+            </p>
+          )}
+          <p className="mt-6 text-base leading-relaxed text-primary/80">
+            {section.body}
+          </p>
         </div>
-        <Card bordered className="self-start">
+        <Card bordered className="reveal-stagger self-start [--reveal-delay:120ms]">
           <p className="label-uppercase mb-4">What you get</p>
           <ul className="space-y-3">
             {bullets.map((b) => (
-              <li key={b} className="flex items-start gap-3 text-base text-primary">
-                <CheckCircle2 size={20} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
+              <li
+                key={b}
+                className="flex items-start gap-3 text-base text-primary"
+              >
+                <CheckCircle2
+                  size={20}
+                  className="mt-0.5 shrink-0 text-accent"
+                  aria-hidden="true"
+                />
                 <span>{b}</span>
               </li>
             ))}

@@ -12,30 +12,52 @@ export function WhyUs({ section }: WhyUsProps) {
     <section
       id={section.sectionKey.toLowerCase()}
       aria-labelledby={`${section.sectionKey.toLowerCase()}-title`}
-      className="border-b border-border bg-snow"
+      className="relative border-b border-border bg-snow"
     >
-      <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-        <div className="mb-16 max-w-2xl">
-          <p className="label-uppercase mb-4 flex items-center gap-2">
-            <span className="inline-block h-px w-6 bg-primary" aria-hidden="true" />
-            Why us
-          </p>
-          <h2 id={`${section.sectionKey.toLowerCase()}-title`} className="text-display-lg font-normal text-primary">
+      <span
+        className="display-number pointer-events-none absolute right-6 top-6 text-[10rem] opacity-50 md:right-12 md:top-10 md:text-[14rem]"
+        aria-hidden="true"
+      >
+        04
+      </span>
+      <div className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <div className="reveal mb-16 max-w-2xl">
+          <p className="label-uppercase accent-rule mb-6">Why us</p>
+          <h2
+            id={`${section.sectionKey.toLowerCase()}-title`}
+            className="text-display-lg text-primary"
+          >
             {section.title}
           </h2>
-          {section.subtitle && <p className="mt-4 text-lg text-muted">{section.subtitle}</p>}
+          {section.subtitle && (
+            <p className="mt-4 text-lg leading-relaxed text-secondary">
+              {section.subtitle}
+            </p>
+          )}
         </div>
-        <ul className="grid gap-6 md:grid-cols-2">
+        <ul className="reveal-stagger grid gap-6 md:grid-cols-2">
           {section.items.map((item, i) => {
             const Icon = ICON_BY_INDEX[i % ICON_BY_INDEX.length];
             return (
               <li key={i}>
                 <Card bordered>
                   <div className="flex items-start gap-4">
-                    <Icon size={24} className="mt-1 shrink-0 text-primary" aria-hidden="true" />
+                    <span className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-pill bg-lightest-gray">
+                      <Icon
+                        size={20}
+                        className="text-primary"
+                        aria-hidden="true"
+                      />
+                    </span>
                     <div>
-                      {item.title && <h3 className="text-lg font-display text-primary">{item.title}</h3>}
-                      {item.description && <p className="mt-2 text-sm leading-relaxed text-muted">{item.description}</p>}
+                      {item.title && (
+                        <h3 className="text-lg text-primary">{item.title}</h3>
+                      )}
+                      {item.description && (
+                        <p className="mt-2 text-sm leading-relaxed text-muted">
+                          {item.description}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </Card>

@@ -27,7 +27,7 @@ export function buildOrganizationJsonLd(site: SiteConfig = DEFAULT_SITE): string
     logo: site.logo,
     email: site.contactEmail,
     description:
-      "Indonesia-based procurement and operations company. International sourcing, multi-currency purchasing, logistics, real-time stock.",
+      "Indonesia-based supplier of industrial parts. We help buyers source the parts their operations need, with full order tracking and multi-currency purchasing.",
   });
 }
 
@@ -39,7 +39,7 @@ export function buildWebSiteJsonLd(site: SiteConfig = DEFAULT_SITE, sections: Pu
     name: site.name,
     url: site.url,
     inLanguage: ["id", "en"],
-    description: hero?.subtitle ?? "Industrial parts procurement, end to end.",
+    description: hero?.subtitle ?? "Industrial parts, sourced and delivered.",
     publisher: {
       "@type": "Organization",
       name: site.name,

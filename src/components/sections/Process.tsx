@@ -8,25 +8,46 @@ export function Process({ section }: ProcessProps) {
     <section
       id={section.sectionKey.toLowerCase()}
       aria-labelledby={`${section.sectionKey.toLowerCase()}-title`}
-      className="border-b border-border bg-surface"
+      className="relative border-b border-border bg-surface"
     >
-      <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-        <div className="mb-16 max-w-2xl">
-          <p className="label-uppercase mb-4 flex items-center gap-2">
-            <span className="inline-block h-px w-6 bg-primary" aria-hidden="true" />
-            Process
-          </p>
-          <h2 id={`${section.sectionKey.toLowerCase()}-title`} className="text-display-lg font-normal text-primary">
+      <span
+        className="display-number pointer-events-none absolute left-6 top-6 text-[10rem] opacity-50 md:left-12 md:top-10 md:text-[14rem]"
+        aria-hidden="true"
+      >
+        05
+      </span>
+      <div className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <div className="reveal mb-16 max-w-2xl">
+          <p className="label-uppercase accent-rule mb-6">Process</p>
+          <h2
+            id={`${section.sectionKey.toLowerCase()}-title`}
+            className="text-display-lg text-primary"
+          >
             {section.title}
           </h2>
-          {section.subtitle && <p className="mt-4 text-lg text-muted">{section.subtitle}</p>}
+          {section.subtitle && (
+            <p className="mt-4 text-lg leading-relaxed text-secondary">
+              {section.subtitle}
+            </p>
+          )}
         </div>
-        <ol className="grid gap-6 md:grid-cols-2">
+        <ol className="reveal-stagger relative grid gap-6 md:grid-cols-2">
           {section.items.map((item, i) => (
-            <li key={i} className="card-primary p-8">
-              <span className="font-mono text-sm text-muted">{String(i + 1).padStart(2, "0")}</span>
-              {item.title && <h3 className="mt-2 text-xl font-display text-primary">{item.title}</h3>}
-              {item.description && <p className="mt-3 text-sm leading-relaxed text-muted">{item.description}</p>}
+            <li
+              key={i}
+              className="group relative card-primary p-8 transition-all duration-300 hover:border-primary hover:shadow-[0_16px_40px_-20px_rgba(23,23,28,0.18)]"
+            >
+              <span className="font-mono text-sm text-muted transition-colors duration-200 group-hover:text-accent">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              {item.title && (
+                <h3 className="mt-2 text-xl text-primary">{item.title}</h3>
+              )}
+              {item.description && (
+                <p className="mt-3 text-sm leading-relaxed text-muted">
+                  {item.description}
+                </p>
+              )}
             </li>
           ))}
         </ol>

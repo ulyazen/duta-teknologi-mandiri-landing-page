@@ -12,24 +12,32 @@ export function Stats({ section }: StatsProps) {
       aria-labelledby={`${section.sectionKey.toLowerCase()}-title`}
       className="relative overflow-hidden border-b border-border bg-snow"
     >
-      <div className="pointer-events-none absolute right-[-2rem] bottom-[-4rem] select-none font-display text-[12rem] font-normal leading-none text-surface" aria-hidden="true">
-        02
-      </div>
+      <span
+        className="display-number pointer-events-none absolute right-6 top-6 text-[10rem] opacity-40 md:right-12 md:top-10 md:text-[14rem]"
+        aria-hidden="true"
+      >
+        06
+      </span>
       <div className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
-        <div className="mb-16 max-w-2xl">
-          <p className="label-uppercase mb-4 flex items-center gap-2">
-            <span className="inline-block h-px w-6 bg-primary" aria-hidden="true" />
-            Stats
-          </p>
-          <h2 id={`${section.sectionKey.toLowerCase()}-title`} className="text-display-lg font-normal text-primary">
+        <div className="reveal mb-16 max-w-2xl">
+          <p className="label-uppercase accent-rule mb-6">Stats</p>
+          <h2
+            id={`${section.sectionKey.toLowerCase()}-title`}
+            className="text-display-lg text-primary"
+          >
             {section.title}
           </h2>
         </div>
-        <dl className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="reveal-stagger grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s, i) => (
-            <div key={i} className="border-l-2 border-primary pl-6">
+            <div
+              key={i}
+              className="group border-l-2 border-primary pl-6 transition-colors duration-200 hover:border-accent"
+            >
               <dt className="text-sm text-muted">{s.label}</dt>
-              <dd className="mt-3 text-5xl font-display font-normal text-primary">{s.value}</dd>
+              <dd className="mt-3 text-5xl text-primary transition-colors duration-200 group-hover:text-accent">
+                {s.value}
+              </dd>
             </div>
           ))}
         </dl>

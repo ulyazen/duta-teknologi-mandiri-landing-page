@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { PublicSection } from "./cms-types";
 
 // The 12 documented section keys per docs/api/landing-page.md.
 // The dashboard Prisma model also has CONTACT, but the public API
@@ -54,6 +55,18 @@ export function parsePublicSection(input: unknown) {
     throw new Error(`CMS section validation failed: ${result.error.message}`);
   }
   return result.data;
+}
+
+// Parse the public-sections array directly. Used for the embedded
+// `__CMS_DATA__` payload (written by scripts/prerender.ts) which has
+// the shape { sections, fetchedAt, source } — not the API envelope
+// { success, data } that parsePublicSections expects.
+export function parseEmbeddedSections(input: unknown): PublicSection[] {
+  const sections = z.array(PublicSectionSchema).safeParse(input);
+  if (!sections.success) {
+    throw new Error(`Embedded CMS sections validation failed: ${sections.error.message}`);
+  }
+  return sections.data;
 }
 
 // The 12 documented section keys per docs/api/landing-page.md.

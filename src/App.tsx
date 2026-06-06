@@ -16,7 +16,7 @@ import { ContactPage } from "./components/pages/ContactPage";
 import { id as idContent } from "./content/id";
 import { en as enContent } from "./content/en";
 import { STUB_SECTIONS } from "./lib/stub-cms";
-import { parsePublicSections } from "./lib/cms-schema";
+import { parseEmbeddedSections } from "./lib/cms-schema";
 import type { Locale, PublicSection } from "./lib/cms-types";
 
 interface AppProps {
@@ -29,9 +29,20 @@ function loadSections(): PublicSection[] {
     const el = document.getElementById("__CMS_DATA__");
     if (el?.textContent) {
       try {
-        return parsePublicSections(JSON.parse(el.textContent));
-      } catch {
-        // fall through
+        const parsed = JSON.parse(el.textContent);
+        // The prerender embeds { sections, fetchedAt, source } — not the
+        // API envelope { success, data }. Unwrap the array, then validate
+        // each section with the Zod schema.
+        const sections = Array.isArray(parsed?.sections)
+          ? parsed.sections
+          : Array.isArray(parsed?.data)
+            ? parsed.data
+            : parsed;
+        return parseEmbeddedSections(sections);
+      } catch (err) {
+        // Embedded CMS data failed to parse — log to the console so the
+        // issue is visible during dev/build, then fall through to stub.
+        console.error("[cms] embedded __CMS_DATA__ failed to parse, using stub:", err);
       }
     }
   }
