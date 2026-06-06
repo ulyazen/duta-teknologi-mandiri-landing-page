@@ -1,6 +1,12 @@
 // TypeScript types for the CMS API contract.
 // Mirrors duta-teknologi-mandiri-web-app/src/app/api/landing-page/route.ts.
-// The Zod schema lives in src/lib/cms-schema.ts (TASK-003).
+// The Zod schema lives in src/lib/cms-schema.ts.
+//
+// The dashboard's Prisma model has a CONTACT key that the public
+// API docs do not list. The schema is intentionally tolerant
+// (sectionKey: string) so the page survives future additions; the
+// prerender filters to the 12 documented keys before embedding,
+// and App.tsx ignores unknown section keys.
 
 export type SectionKey =
   | "HERO"
@@ -14,7 +20,8 @@ export type SectionKey =
   | "PARTNERS"
   | "IMAGE_GALLERY"
   | "FAQ"
-  | "CTA_BANNER";
+  | "CTA_BANNER"
+  | (string & {}); // tolerate other strings from the API
 
 export type ItemType = "SERVICE" | "TESTIMONIAL" | "FAQ" | "GALLERY_IMAGE";
 
@@ -33,7 +40,7 @@ export interface PublicSectionItem {
 }
 
 export interface PublicSection {
-  sectionKey: SectionKey;
+  sectionKey: string;
   title: string;
   subtitle: string | null;
   body: string | null;
