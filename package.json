@@ -1,0 +1,43 @@
+{
+  "name": "duta-teknologi-mandiri-landing-page",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "NODE_OPTIONS=--max-old-space-size=512 tsc -b && NODE_OPTIONS=--max-old-space-size=512 vite build",
+    "start": "vite preview --port 5000 --host",
+    "lint": "eslint . --max-warnings=0",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "prerender": "tsx scripts/prerender.ts",
+    "agent:create": "tsx scripts/agent-orchestrator.ts create",
+    "agent:status": "tsx scripts/agent-orchestrator.ts status",
+    "agent:list": "tsx scripts/agent-orchestrator.ts list",
+    "agent:complete": "tsx scripts/agent-orchestrator.ts complete",
+    "agent:review": "tsx scripts/agent-orchestrator.ts review",
+    "agent:worktree": "tsx scripts/agent-orchestrator.ts worktree"
+  },
+  "dependencies": {
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.12.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.59.2",
+    "vite": "^8.0.12"
+  }
+}
