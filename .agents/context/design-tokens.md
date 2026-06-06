@@ -50,6 +50,7 @@ colors) anywhere outside `src/index.css`.
 ## Content authorship
 
 All section copy must reflect the DTM company profile defined in
-`company-profile.md`. Never invent company facts; if a fact is not in
-that file or the dashboard's PRD, the corresponding section returns
+`company-profile.md`. Read the "Do not expose" section there before
+writing any copy. Never invent company facts; never expose sensitive
+operational data. If a fact is not public-safe, the section returns
 `null` and the content team fills it in via the CMS later.
