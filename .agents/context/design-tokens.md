@@ -45,3 +45,11 @@ colors) anywhere outside `src/index.css`.
 - Section vertical spacing 56-60px
 - Container max-width adapts to viewport (full bleed on hero)
 - 5 breakpoints: <425, 425-640, 640-768, 768-1024, 1024-1440, 1440-2560
+
+
+## Content authorship
+
+All section copy must reflect the DTM company profile defined in
+`company-profile.md`. Never invent company facts; if a fact is not in
+that file or the dashboard's PRD, the corresponding section returns
+`null` and the content team fills it in via the CMS later.
