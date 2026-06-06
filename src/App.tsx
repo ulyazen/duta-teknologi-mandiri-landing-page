@@ -12,39 +12,72 @@ import { Partners } from "./components/sections/Partners";
 import { Gallery } from "./components/sections/Gallery";
 import { Faq } from "./components/sections/Faq";
 import { CtaBanner } from "./components/sections/CtaBanner";
+import { ContactPage } from "./components/pages/ContactPage";
 import { id as idContent } from "./content/id";
 import { en as enContent } from "./content/en";
 import { STUB_SECTIONS } from "./lib/stub-cms";
-import type { Locale } from "./lib/cms-types";
+import { parsePublicSections } from "./lib/cms-schema";
+import type { Locale, PublicSection } from "./lib/cms-types";
 
 interface AppProps {
   locale?: Locale;
   pathname?: string;
 }
 
-export function App({ locale = "id", pathname = "/" }: AppProps) {
-  const content = locale === "id" ? idContent : enContent;
-  const sections = STUB_SECTIONS;
-
-  const renderSection = (key: string) => {
-    const section = sections.find((s) => s.sectionKey === key);
-    if (!section) return null;
-    switch (key) {
-      case "HERO": return <Hero key={key} section={section} />;
-      case "ABOUT": return <About key={key} section={section} />;
-      case "SERVICES": return <Services key={key} section={section} />;
-      case "WHY_US": return <WhyUs key={key} section={section} />;
-      case "PROCESS": return <Process key={key} section={section} />;
-      case "STATS": return <Stats key={key} section={section} />;
-      case "TESTIMONIALS": return <Testimonials key={key} section={section} />;
-      case "CLIENTS": return <Clients key={key} section={section} />;
-      case "PARTNERS": return <Partners key={key} section={section} />;
-      case "IMAGE_GALLERY": return <Gallery key={key} section={section} />;
-      case "FAQ": return <Faq key={key} section={section} />;
-      case "CTA_BANNER": return <CtaBanner key={key} section={section} />;
-      default: return null;
+function loadSections(): PublicSection[] {
+  if (typeof document !== "undefined") {
+    const el = document.getElementById("__CMS_DATA__");
+    if (el?.textContent) {
+      try {
+        return parsePublicSections(JSON.parse(el.textContent));
+      } catch {
+        // fall through
+      }
     }
-  };
+  }
+  return STUB_SECTIONS;
+}
+
+function isContactPath(pathname: string): boolean {
+  const p = pathname.replace(/\/+$/, "");
+  return p === "/contact" || p === "/en/contact";
+}
+
+function detectLocale(pathname: string): Locale {
+  const p = pathname.replace(/\/+$/, "");
+  if (p === "/en" || p.startsWith("/en/")) return "en";
+  return "id";
+}
+
+function detectPathname(): string {
+  if (typeof window === "undefined") return "/";
+  return window.location.pathname;
+}
+
+const SECTION_RENDERERS: Record<string, (props: { section: PublicSection }) => React.ReactNode> = {
+  HERO: ({ section }) => <Hero section={section} />,
+  ABOUT: ({ section }) => <About section={section} />,
+  SERVICES: ({ section }) => <Services section={section} />,
+  WHY_US: ({ section }) => <WhyUs section={section} />,
+  PROCESS: ({ section }) => <Process section={section} />,
+  STATS: ({ section }) => <Stats section={section} />,
+  TESTIMONIALS: ({ section }) => <Testimonials section={section} />,
+  CLIENTS: ({ section }) => <Clients section={section} />,
+  PARTNERS: ({ section }) => <Partners section={section} />,
+  IMAGE_GALLERY: ({ section }) => <Gallery section={section} />,
+  FAQ: ({ section }) => <Faq section={section} />,
+  CTA_BANNER: ({ section }) => <CtaBanner section={section} />,
+};
+
+const SECTION_ORDER: (keyof typeof SECTION_RENDERERS)[] = [
+  "HERO", "ABOUT", "SERVICES", "WHY_US", "PROCESS", "STATS",
+  "TESTIMONIALS", "CLIENTS", "PARTNERS", "IMAGE_GALLERY", "FAQ", "CTA_BANNER",
+];
+
+function HomePage({ locale, pathname }: { locale: Locale; pathname: string }) {
+  const content = locale === "id" ? idContent : enContent;
+  const sections = loadSections();
+  const byKey = new Map<string, PublicSection>(sections.map((s) => [s.sectionKey, s]));
 
   return (
     <>
@@ -53,22 +86,25 @@ export function App({ locale = "id", pathname = "/" }: AppProps) {
       </a>
       <Nav locale={locale} pathname={pathname} />
       <main id="main">
-        {renderSection("HERO")}
-        {renderSection("ABOUT")}
-        {renderSection("SERVICES")}
-        {renderSection("WHY_US")}
-        {renderSection("PROCESS")}
-        {renderSection("STATS")}
-        {renderSection("TESTIMONIALS")}
-        {renderSection("CLIENTS")}
-        {renderSection("PARTNERS")}
-        {renderSection("IMAGE_GALLERY")}
-        {renderSection("FAQ")}
-        {renderSection("CTA_BANNER")}
+        {SECTION_ORDER.map((key) => {
+          const section = byKey.get(key);
+          if (!section) return null;
+          const Renderer = SECTION_RENDERERS[key];
+          return <Renderer key={key} section={section as PublicSection} />;
+        })}
       </main>
       <Footer locale={locale} />
     </>
   );
+}
+
+export function App(props: AppProps) {
+  const pathname = props.pathname ?? detectPathname();
+  const locale = props.locale ?? detectLocale(pathname);
+  if (isContactPath(pathname)) {
+    return <ContactPage locale={locale} pathname={pathname} />;
+  }
+  return <HomePage locale={locale} pathname={pathname} />;
 }
 
 export default App;
