@@ -10,22 +10,23 @@ export function Process({ section }: ProcessProps) {
       aria-labelledby={`${section.sectionKey.toLowerCase()}-title`}
       className="border-b border-border bg-surface"
     >
-      <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <div className="mb-12 max-w-2xl">
-          <p className="label-uppercase mb-4">Process</p>
+      <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <div className="mb-16 max-w-2xl">
+          <p className="label-uppercase mb-4 flex items-center gap-2">
+            <span className="inline-block h-px w-6 bg-primary" aria-hidden="true" />
+            Process
+          </p>
           <h2 id={`${section.sectionKey.toLowerCase()}-title`} className="text-display-lg font-normal text-primary">
             {section.title}
           </h2>
           {section.subtitle && <p className="mt-4 text-lg text-muted">{section.subtitle}</p>}
         </div>
-        <ol className="space-y-6">
+        <ol className="grid gap-6 md:grid-cols-2">
           {section.items.map((item, i) => (
-            <li key={i} className="grid gap-4 border-b border-border pb-6 last:border-b-0 md:grid-cols-[3rem_1fr]">
-              <span className="text-3xl font-display text-muted">{String(i + 1).padStart(2, "0")}</span>
-              <div>
-                {item.title && <h3 className="text-lg font-display text-primary">{item.title}</h3>}
-                {item.description && <p className="mt-2 text-base text-muted">{item.description}</p>}
-              </div>
+            <li key={i} className="card-primary p-8">
+              <span className="font-mono text-sm text-muted">{String(i + 1).padStart(2, "0")}</span>
+              {item.title && <h3 className="mt-2 text-xl font-display text-primary">{item.title}</h3>}
+              {item.description && <p className="mt-3 text-sm leading-relaxed text-muted">{item.description}</p>}
             </li>
           ))}
         </ol>

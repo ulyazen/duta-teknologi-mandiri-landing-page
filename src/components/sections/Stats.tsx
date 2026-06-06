@@ -10,20 +10,26 @@ export function Stats({ section }: StatsProps) {
     <section
       id={section.sectionKey.toLowerCase()}
       aria-labelledby={`${section.sectionKey.toLowerCase()}-title`}
-      className="border-b border-border bg-snow"
+      className="relative overflow-hidden border-b border-border bg-snow"
     >
-      <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <div className="mb-12 max-w-2xl">
-          <p className="label-uppercase mb-4">Stats</p>
+      <div className="pointer-events-none absolute right-[-2rem] bottom-[-4rem] select-none font-display text-[12rem] font-normal leading-none text-surface" aria-hidden="true">
+        02
+      </div>
+      <div className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <div className="mb-16 max-w-2xl">
+          <p className="label-uppercase mb-4 flex items-center gap-2">
+            <span className="inline-block h-px w-6 bg-primary" aria-hidden="true" />
+            Stats
+          </p>
           <h2 id={`${section.sectionKey.toLowerCase()}-title`} className="text-display-lg font-normal text-primary">
             {section.title}
           </h2>
         </div>
-        <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s, i) => (
-            <div key={i} className="border-l border-border pl-6">
+            <div key={i} className="border-l-2 border-primary pl-6">
               <dt className="text-sm text-muted">{s.label}</dt>
-              <dd className="mt-2 text-4xl font-display text-primary">{s.value}</dd>
+              <dd className="mt-3 text-5xl font-display font-normal text-primary">{s.value}</dd>
             </div>
           ))}
         </dl>
