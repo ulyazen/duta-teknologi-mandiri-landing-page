@@ -24,7 +24,7 @@ Usage:
   agent-orchestrator.ts review --task=TASK-001
   agent-orchestrator.ts worktree --task=TASK-001 --role=<scope|design|implement|test|review>
 
-Stages: pending -> scoped -> designed -> implemented -> tested -> reviewed -> approved
+Stages: pending -> scoped -> designed -> implemented -> tested -> marketing-review -> reviewed -> approved
 Worktrees: .worktrees/<role>/ (branched from main, removed after merge)
 `);
 }

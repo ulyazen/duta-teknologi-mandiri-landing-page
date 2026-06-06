@@ -1,0 +1,26 @@
+{
+  "id": "TASK-003",
+  "title": "CMS client + static prerender + home page",
+  "module": "cms",
+  "description": "Zod-validated CMS client, prerender script, embedded data for both locales.",
+  "status": "approved",
+  "assignments": {
+    "product_owner": "leader",
+    "system_architect": "leader",
+    "design_engineer": "leader",
+    "fullstack": "leader",
+    "qa": "leader",
+    "marketing_reviewer": "leader (documented exception: first subagent stalled; leader filled the marketing-review step)"
+  },
+  "timestamps": {
+    "pending": "2026-06-07T03:00:00.000Z",
+    "scoped": "2026-06-07T03:30:00.000Z",
+    "designed": "2026-06-07T03:35:00.000Z",
+    "implemented": "2026-06-07T03:50:00.000Z",
+    "tested": "2026-06-07T03:55:00.000Z",
+    "reviewed": "2026-06-07T04:00:00.000Z",
+    "approved": "2026-06-07T04:05:00.000Z"
+  },
+  "git_branch": "feature/TASK-003-cms",
+  "complexity": "L"
+}

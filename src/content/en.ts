@@ -4,15 +4,15 @@ export const en = {
   nav: {
     sections: [
       { href: "/#about", label: "About" },
-      { href: "/#services", label: "Services" },
+      { href: "/#services", label: "What you get" },
       { href: "/#process", label: "Process" },
       { href: "/#faq", label: "FAQ" },
     ],
-    contact: "Contact us",
+    contact: "Talk to us",
     skipToContent: "Skip to content",
   },
   footer: {
-    tagline: "Industrial parts procurement, end to end.",
+    tagline: "Industrial parts, sourced and delivered.",
     sectionsTitle: "Pages",
     contactTitle: "Contact",
     rights: "All rights reserved.",
@@ -24,7 +24,7 @@ export const en = {
   },
   cta: {
     learnMore: "Learn more",
-    getInTouch: "Get in touch",
+    getInTouch: "Talk to us",
   },
   a11y: {
     mainNavigation: "Primary navigation",

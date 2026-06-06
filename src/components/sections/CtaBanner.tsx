@@ -11,13 +11,21 @@ export function CtaBanner({ section }: CtaBannerProps) {
       aria-labelledby={`${section.sectionKey.toLowerCase()}-title`}
       className="relative overflow-hidden bg-deep-dark text-surface"
     >
-      <div className="pointer-events-none absolute right-0 top-0 h-32 w-32 rounded-card bg-accent opacity-10" aria-hidden="true" />
-      <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-24 rounded-card bg-accent opacity-10" aria-hidden="true" />
+      {/* Subtle purple gradient overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent/15 via-transparent to-accent-soft/10" aria-hidden="true" />
+      {/* Decorative offset blocks */}
+      <div className="pointer-events-none absolute right-0 top-0 h-40 w-40 rounded-card bg-accent opacity-10" aria-hidden="true" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-32 w-32 rounded-card bg-accent-soft opacity-10" aria-hidden="true" />
+      <div className="pointer-events-none absolute right-[-3rem] bottom-[-3rem] select-none font-display text-[12rem] font-normal leading-none text-accent/15" aria-hidden="true">
+        12
+      </div>
+
       <div className="relative mx-auto max-w-4xl px-6 py-24 text-center md:py-32">
         <p className="label-uppercase mb-6 text-muted">Get in touch</p>
         <h2
           id={`${section.sectionKey.toLowerCase()}-title`}
-          className="text-display-xl font-normal"
+          className="text-display-xl font-normal text-gradient !bg-gradient-to-b !from-white !to-white/70"
+          style={{ backgroundImage: "linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.7) 100%)" }}
         >
           {section.title}
         </h2>

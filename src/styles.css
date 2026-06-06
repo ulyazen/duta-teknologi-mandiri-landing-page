@@ -1,16 +1,15 @@
 @import "tailwindcss";
 
-/* Self-hosted fonts (1:1 with dashboard fallback chain) */
 @import "@fontsource/inter/400.css";
 @import "@fontsource/inter/500.css";
 @import "@fontsource/space-grotesk/400.css";
 
-/* Design tokens (1:1 with duta-teknologi-mandiri-web-app/src/app/globals.css) */
 @theme {
   --color-primary: #000000;
   --color-secondary: #212121;
   --color-deep-dark: #17171c;
   --color-accent: #1863dc;
+  --color-accent-soft: #4c6ee6;
   --color-focus-purple: #9b60aa;
   --color-surface: #ffffff;
   --color-snow: #fafafa;
@@ -32,16 +31,20 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   body {
     font-family: var(--font-body);
     background-color: var(--color-surface);
     color: var(--color-primary);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-surface);
   }
 }
 
@@ -50,11 +53,19 @@
     border-radius: var(--radius-card);
     background-color: var(--color-surface);
     border: 1px solid var(--color-lightest-gray);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .card-primary:hover {
+    border-color: var(--color-border);
   }
   .card-bordered {
     border-radius: var(--radius-card);
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .card-bordered:hover {
+    border-color: var(--color-primary);
   }
   .btn-ghost {
     background: transparent;
@@ -78,7 +89,7 @@
     background-color: var(--color-primary);
     color: var(--color-surface);
     border-radius: var(--radius-pill);
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.1s ease;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -87,10 +98,29 @@
   }
   .btn-solid:hover {
     background-color: var(--color-deep-dark);
+    transform: translateY(-1px);
+  }
+  .btn-solid:active {
+    transform: translateY(0);
   }
   .btn-solid:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
+  }
+  .btn-accent {
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+    border-radius: var(--radius-pill);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+  }
+  .btn-accent:hover {
+    background-color: #1454c0;
+    transform: translateY(-1px);
   }
   .label-uppercase {
     font-family: var(--font-mono);
@@ -99,11 +129,54 @@
     letter-spacing: 0.28px;
     color: var(--color-muted);
   }
+  /* Cohere-style gradient text for display headings */
+  .text-gradient {
+    background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  /* Cohere-style accent underline (used on section eyebrows) */
+  .accent-rule {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .accent-rule::before {
+    content: "";
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--color-accent);
+  }
 }
 
 @layer utilities {
-  .text-display-hero { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1; letter-spacing: -0.02em; }
+  .text-display-hero { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1; letter-spacing: -0.025em; }
   .text-display-xl { font-size: clamp(2rem, 4vw, 3.75rem); line-height: 1.05; letter-spacing: -0.02em; }
-  .text-display-lg { font-size: clamp(1.75rem, 3vw, 3rem); line-height: 1.15; letter-spacing: -0.015em; }
+  .text-display-lg { font-size: clamp(1.75rem, 3vw, 3rem); line-height: 1.1; letter-spacing: -0.015em; }
   .text-display-md { font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; }
+  .animate-fade-in {
+    animation: fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .animate-fade-up {
+    animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-fade-up {
+    animation: none;
+  }
 }

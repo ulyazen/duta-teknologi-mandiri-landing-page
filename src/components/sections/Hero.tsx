@@ -1,6 +1,5 @@
 import type { PublicSection } from "../../lib/cms-types";
-import { Button } from "../ui/Button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 interface HeroProps { section: PublicSection; }
 
@@ -12,48 +11,59 @@ export function Hero({ section }: HeroProps) {
       aria-labelledby={`${section.sectionKey.toLowerCase()}-title`}
       className="relative overflow-hidden border-b border-border bg-surface"
     >
-      <div className="pointer-events-none absolute right-[-2rem] top-[-4rem] select-none font-display text-[16rem] font-normal leading-none text-snow" aria-hidden="true">
+      {/* Decorative giant number behind the heading */}
+      <div className="pointer-events-none absolute right-[-2rem] top-[-3rem] select-none font-display text-[18rem] font-normal leading-none text-snow" aria-hidden="true">
         01
       </div>
-      <div className="pointer-events-none absolute right-0 top-0 hidden h-full w-1/3 bg-gradient-to-l from-snow to-transparent md:block" aria-hidden="true" />
+      {/* Subtle gradient overlay on the right */}
+      <div className="pointer-events-none absolute right-0 top-0 hidden h-full w-1/2 bg-gradient-to-l from-lightest-gray to-transparent md:block" aria-hidden="true" />
 
-      <div className="relative mx-auto max-w-6xl px-6 py-24 md:py-36">
-        <div className="grid gap-12 md:grid-cols-[3fr_2fr] md:gap-16">
+      <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-20 md:pb-32 md:pt-28">
+        <div className="grid gap-16 md:grid-cols-[1.4fr_1fr] md:items-start">
           <div>
-            <p className="label-uppercase mb-6 flex items-center gap-2">
-              <span className="inline-block h-px w-8 bg-primary" aria-hidden="true" />
-              Duta Teknologi Mandiri
-            </p>
+            <p className="label-uppercase accent-rule mb-8">Duta Teknologi Mandiri</p>
             <h1
               id={`${section.sectionKey.toLowerCase()}-title`}
-              className="text-display-hero font-normal text-primary"
+              className="text-display-hero text-gradient animate-fade-up"
             >
               {section.title}
             </h1>
             {section.subtitle && (
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">{section.subtitle}</p>
+              <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted animate-fade-up [animation-delay:80ms]">
+                {section.subtitle}
+              </p>
             )}
             {section.ctaText && section.ctaLink && (
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Button as="a" href={section.ctaLink}>
+              <div className="mt-10 flex flex-wrap items-center gap-4 animate-fade-up [animation-delay:160ms]">
+                <a
+                  href={section.ctaLink}
+                  className="btn-solid"
+                >
                   {section.ctaText}
                   <ArrowRight size={16} aria-hidden="true" />
-                </Button>
+                </a>
                 <a href="#services" className="btn-ghost text-sm">
-                  See what we do
+                  See what you get
+                  <ArrowUpRight size={16} aria-hidden="true" />
                 </a>
               </div>
             )}
           </div>
+
+          {/* Cohere-style "command deck" stat strip */}
           <div className="hidden md:block">
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               {[
                 { label: "Sourcing", value: "Global" },
                 { label: "Currencies", value: "Multi" },
                 { label: "Stock", value: "Real-time" },
                 { label: "Audit", value: "100%" },
-              ].map((s) => (
-                <div key={s.label} className="card-bordered p-5">
+              ].map((s, i) => (
+                <div
+                  key={s.label}
+                  className="card-bordered p-5 animate-fade-up"
+                  style={{ animationDelay: `${120 + i * 60}ms` }}
+                >
                   <p className="label-uppercase">{s.label}</p>
                   <p className="mt-2 text-2xl font-display text-primary">{s.value}</p>
                 </div>

@@ -2,19 +2,19 @@ import type { PublicSection } from "./cms-types";
 
 // Stub payload for TASK-002. Mirrors the shape of the real API response.
 // TASK-003 replaces this with a build-time call to getLandingPage().
-// All copy is DTM-specific and public-safe (capability-level only).
+// All copy is DTM-specific and public-safe (sell-side framing only).
 // See .agents/context/company-profile.md for the "Do not expose" list.
 
 export const STUB_SECTIONS: PublicSection[] = [
   {
     sectionKey: "HERO",
-    title: "Industrial parts procurement, end to end.",
+    title: "Industrial parts, sourced and delivered.",
     subtitle:
-      "We source industrial parts from international manufacturers and deliver them to clients across Indonesia.",
+      "We supply the industrial parts your operation needs, with full order tracking and real-time stock visibility.",
     body: null,
     imageUrl: null,
     imageAlt: null,
-    ctaText: "Contact our team",
+    ctaText: "Talk to our team",
     ctaLink: "/contact",
     sortOrder: 1,
     items: [],
@@ -22,9 +22,9 @@ export const STUB_SECTIONS: PublicSection[] = [
   {
     sectionKey: "ABOUT",
     title: "Who we are",
-    subtitle: "Procurement and operations, on your side.",
+    subtitle: "A supplier you can plan around.",
     body:
-      "Duta Teknologi Mandiri is an Indonesia-based procurement and operations company. We help clients source industrial parts from international suppliers, manage the full chain from purchase order to local fulfillment, and keep stock visible in real time.",
+      "Duta Teknologi Mandiri is an Indonesia-based supplier of industrial parts. We help buyers source the parts their operations need, track every order from confirmation to delivery, and keep stock visible in real time.",
     imageUrl: null,
     imageAlt: null,
     ctaText: null,
@@ -34,8 +34,8 @@ export const STUB_SECTIONS: PublicSection[] = [
   },
   {
     sectionKey: "SERVICES",
-    title: "What we do",
-    subtitle: "Capability areas we offer to clients.",
+    title: "What you get when you order from us",
+    subtitle: "Capabilities that make procurement predictable.",
     body: null,
     imageUrl: null,
     imageAlt: null,
@@ -43,17 +43,17 @@ export const STUB_SECTIONS: PublicSection[] = [
     ctaLink: null,
     sortOrder: 3,
     items: [
-      { type: "SERVICE", title: "International sourcing", description: "We work with suppliers across multiple countries and currencies to find the right parts for your operation.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 1 },
+      { type: "SERVICE", title: "Industrial parts supply", description: "We supply the parts your operation needs, sourced from international manufacturers.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 1 },
       { type: "SERVICE", title: "Multi-currency purchasing", description: "Exchange rates, VAT, fees, and shipping costs are managed in one system so you see a single landed cost.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 2 },
-      { type: "SERVICE", title: "Logistics coordination", description: "We coordinate with international and local shippers for the full freight journey.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 3 },
-      { type: "SERVICE", title: "Real-time stock visibility", description: "Clients see current stock levels before they order, with full audit history on every movement.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 4 },
-      { type: "SERVICE", title: "Order tracking", description: "Every order has a clear status from advance payment through delivery to fulfillment.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 5 },
-      { type: "SERVICE", title: "Audit trail", description: "Every financial and status change is logged so you have a single source of truth.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 6 },
+      { type: "SERVICE", title: "Logistics coordination", description: "We coordinate freight from the supplier to your door, with clear status at every step.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 3 },
+      { type: "SERVICE", title: "Real-time stock visibility", description: "You see current stock levels before you order, with full history on every movement.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 4 },
+      { type: "SERVICE", title: "Order tracking", description: "Every order has a clear status from confirmation through delivery to fulfillment.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 5 },
+      { type: "SERVICE", title: "Audit trail", description: "Every status change is logged so you have a single source of truth for the order.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 6 },
     ],
   },
   {
     sectionKey: "WHY_US",
-    title: "Why teams work with us",
+    title: "Why buyers work with us",
     subtitle: "Outcomes our clients see.",
     body: null,
     imageUrl: null,
@@ -62,16 +62,16 @@ export const STUB_SECTIONS: PublicSection[] = [
     ctaLink: null,
     sortOrder: 4,
     items: [
-      { type: "SERVICE", title: "Faster procurement", description: "A centralized workflow replaces scattered spreadsheets.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 1 },
+      { type: "SERVICE", title: "Faster parts procurement", description: "A centralized workflow replaces scattered spreadsheets.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 1 },
       { type: "SERVICE", title: "Accurate landed cost", description: "Currency, VAT, fees, and shipping are calculated once, not by hand.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 2 },
       { type: "SERVICE", title: "Margin transparency", description: "Sell prices are derived from real cost data plus a published markup tier.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 3 },
-      { type: "SERVICE", title: "Stock that matches reality", description: "Stock reflects the current import and sell state, not a stale snapshot.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 4 },
+      { type: "SERVICE", title: "Stock that matches reality", description: "Stock reflects the current supply state, not a stale snapshot.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 4 },
     ],
   },
   {
     sectionKey: "PROCESS",
     title: "How an order moves",
-    subtitle: "From supplier to fulfillment.",
+    subtitle: "From your inquiry to delivery.",
     body: null,
     imageUrl: null,
     imageAlt: null,
@@ -79,11 +79,11 @@ export const STUB_SECTIONS: PublicSection[] = [
     ctaLink: null,
     sortOrder: 5,
     items: [
-      { type: "SERVICE", title: "Supplier onboarding", description: "International suppliers are onboarded with country, contact, and currency details.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 1 },
-      { type: "SERVICE", title: "Part catalog", description: "Every part is tracked by part number with full description and history.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 2 },
-      { type: "SERVICE", title: "Procurement", description: "Each order records vendor, shipper, currency, exchange rate, VAT, fee, quantity, and shipping.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 3 },
-      { type: "SERVICE", title: "Payment tracking", description: "Advance, partial, and final payments are tracked per order.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 4 },
-      { type: "SERVICE", title: "Delivery", description: "When the import is delivered, stock increments and the order is fulfilled.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 5 },
+      { type: "SERVICE", title: "Inquiry", description: "Tell us the part numbers and quantities you need. We confirm availability and lead time.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 1 },
+      { type: "SERVICE", title: "Quotation", description: "We send a single, clear quotation with the landed cost and expected delivery window.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 2 },
+      { type: "SERVICE", title: "Order confirmation", description: "Once confirmed, the order is locked in with a clear status you can check any time.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 3 },
+      { type: "SERVICE", title: "Fulfillment", description: "We coordinate freight and keep you posted as the order moves toward delivery.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 4 },
+      { type: "SERVICE", title: "Delivery", description: "The order arrives with documentation and a complete audit trail.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 5 },
     ],
   },
   {
@@ -162,20 +162,20 @@ export const STUB_SECTIONS: PublicSection[] = [
     ctaLink: null,
     sortOrder: 11,
     items: [
-      { type: "FAQ", title: "How do you source parts?", description: "We work with international suppliers across multiple countries and currencies, and we manage the full chain from purchase order to local fulfillment.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 1 },
-      { type: "FAQ", title: "Can you handle multiple currencies?", description: "Yes. Exchange rates, VAT, fees, and shipping costs are managed in one system so the landed cost is calculated once and is consistent across the order.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 2 },
-      { type: "FAQ", title: "How is stock tracked?", description: "Every import that reaches delivered status increments central stock. Every fulfilled sell decrements it. Clients see current stock levels before they order.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 3 },
-      { type: "FAQ", title: "Do you offer a single source of audit history?", description: "Yes. Every financial and status change is logged so you can trace any order from initial quote to fulfillment.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 4 },
+      { type: "FAQ", title: "What do you supply?", description: "We supply industrial parts sourced from international manufacturers. Tell us what you need and we will confirm availability and lead time.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 1 },
+      { type: "FAQ", title: "Can you handle multi-currency orders?", description: "Yes. Exchange rates, VAT, fees, and shipping costs are managed in one system so the landed cost is calculated once and is consistent across the order.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 2 },
+      { type: "FAQ", title: "How do I see current stock?", description: "Stock levels are visible before you order, with full history on every movement so you can plan around the actual supply.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 3 },
+      { type: "FAQ", title: "How is each order tracked?", description: "Every order has a clear status from confirmation through delivery to fulfillment, and every status change is logged.", imageUrl: null, imageAlt: null, authorName: null, authorTitle: null, authorCompany: null, sortOrder: 4 },
     ],
   },
   {
     sectionKey: "CTA_BANNER",
-    title: "Ready to source parts with a real partner?",
+    title: "Need industrial parts you can plan around?",
     subtitle: "Tell us what you need and we will get back within one business day.",
     body: null,
     imageUrl: null,
     imageAlt: null,
-    ctaText: "Contact our team",
+    ctaText: "Talk to our team",
     ctaLink: "/contact",
     sortOrder: 12,
     items: [],

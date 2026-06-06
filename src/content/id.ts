@@ -12,7 +12,7 @@ export const id = {
     skipToContent: "Lewati ke konten",
   },
   footer: {
-    tagline: "Pengadaan suku cadang industri, dari hulu ke hilir.",
+    tagline: "Suku cadang industri, dari sumber terpercaya.",
     sectionsTitle: "Halaman",
     contactTitle: "Kontak",
     rights: "Hak cipta dilindungi.",

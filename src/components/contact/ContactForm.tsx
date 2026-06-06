@@ -8,7 +8,8 @@ const contactSchema = z.object({
   name: z.string().min(1, "required").max(120),
   email: z.string().email("invalid").max(200),
   company: z.string().max(200).optional().or(z.literal("")),
-  subject: z.string().min(1, "required").max(200),
+  // Free-text: what parts the buyer needs. Public-safe.
+  parts: z.string().min(1, "required").max(500),
   message: z.string().min(1, "required").max(4000),
   // honeypot - must remain empty; bots fill it
   website: z.string().max(0).optional().or(z.literal("")),
@@ -25,7 +26,8 @@ const COPY = {
     name: "Nama",
     email: "Email",
     company: "Perusahaan (opsional)",
-    subject: "Subjek",
+    parts: "Suku cadang yang dibutuhkan",
+    partsHint: "Nomor part atau deskripsi singkat",
     message: "Pesan",
     submit: "Kirim via email",
     required: "wajib diisi",
@@ -36,7 +38,8 @@ const COPY = {
     name: "Name",
     email: "Email",
     company: "Company (optional)",
-    subject: "Subject",
+    parts: "Parts you need",
+    partsHint: "Part numbers or a short description",
     message: "Message",
     submit: "Send via email",
     required: "required",
@@ -53,17 +56,18 @@ export function ContactForm({ locale }: ContactFormProps) {
     formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", company: "", subject: "", message: "", website: "" },
+    defaultValues: { name: "", email: "", company: "", parts: "", message: "", website: "" },
   });
 
   const onSubmit = (values: ContactFormValues) => {
     if (values.website && values.website.length > 0) return;
-    const subject = encodeURIComponent(`[DTM] ${values.subject}`);
+    const subject = encodeURIComponent(`[DTM Inquiry] ${values.parts.slice(0, 80)}`);
     const body = encodeURIComponent(
       [
         `Name: ${values.name}`,
         `Email: ${values.email}`,
         values.company ? `Company: ${values.company}` : "",
+        `Parts needed: ${values.parts}`,
         "",
         values.message,
       ].filter(Boolean).join("\n")
@@ -100,9 +104,9 @@ export function ContactForm({ locale }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="cf-subject" className="label-uppercase block mb-2">{labels.subject}</label>
-        <input id="cf-subject" type="text" className="w-full rounded-card border border-border bg-surface px-4 py-3 text-base text-primary focus:outline-none focus:border-accent" {...register("subject")} />
-        {errors.subject && <p className="mt-1 text-sm text-error" role="alert">{errors.subject.message}</p>}
+        <label htmlFor="cf-parts" className="label-uppercase block mb-2">{labels.parts}</label>
+        <input id="cf-parts" type="text" placeholder={labels.partsHint} className="w-full rounded-card border border-border bg-surface px-4 py-3 text-base text-primary focus:outline-none focus:border-accent" {...register("parts")} />
+        {errors.parts && <p className="mt-1 text-sm text-error" role="alert">{errors.parts.message}</p>}
       </div>
 
       <div>

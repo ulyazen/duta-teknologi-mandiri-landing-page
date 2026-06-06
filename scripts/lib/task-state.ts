@@ -10,6 +10,7 @@ export type TaskStatus =
   | "designed"
   | "implemented"
   | "tested"
+  | "marketing-review"
   | "reviewed"
   | "approved";
 
@@ -37,6 +38,7 @@ const STATUS_ORDER: TaskStatus[] = [
   "designed",
   "implemented",
   "tested",
+  "marketing-review",
   "reviewed",
   "approved",
 ];
@@ -97,6 +99,7 @@ export async function createTask(opts: {
       designed: null,
       implemented: null,
       tested: null,
+  marketing_review: null,
       reviewed: null,
       approved: null,
     },

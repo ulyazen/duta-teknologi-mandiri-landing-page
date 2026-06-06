@@ -13,14 +13,14 @@ interface ContactPageProps {
 
 const COPY = {
   id: {
-    title: "Hubungi kami",
-    subtitle: "Ceritakan kebutuhan Anda. Kami akan membalas dalam satu hari kerja.",
+    title: "Bicara dengan tim kami",
+    subtitle: "Ceritakan kebutuhan Anda. Kami akan membalas dalam satu hari kerja dengan ketersediaan dan estimasi waktu pengiriman.",
     response: "Kami biasanya membalas dalam",
     responseTime: "satu hari kerja",
   },
   en: {
-    title: "Contact us",
-    subtitle: "Tell us what you need. We will reply within one business day.",
+    title: "Talk to our team",
+    subtitle: "Tell us what you need. We will reply within one business day with availability and lead time.",
     response: "We usually reply within",
     responseTime: "one business day",
   },
