@@ -3,9 +3,9 @@
   "title": "Design tokens + bilingual content + 12 section components + Nav + Footer",
   "module": "ui",
   "description": "Mirror the dashboard's design system 1:1, add id/en content, ship the 12 section components, Nav, Footer, and LocaleSwitcher.",
-  "status": "pending",
+  "status": "scoped",
   "assignments": {
-    "product_owner": "in-progress",
+    "product_owner": "leader (swarm stalled, leader wrote scope directly)",
     "system_architect": "pending",
     "design_engineer": "pending",
     "fullstack": "pending",
@@ -13,7 +13,7 @@
   },
   "timestamps": {
     "pending": "2026-06-07T00:00:00.000Z",
-    "scoped": null,
+    "scoped": "2026-06-07T02:00:00.000Z",
     "designed": null,
     "implemented": null,
     "tested": null,
