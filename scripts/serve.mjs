@@ -7,7 +7,7 @@
  * hosts (Biznet Neo, shared LVE). Same goes for `tsx` itself
  * (it uses esbuild). Pure-JS Node avoids both. ~20 MB RSS.
  *
- * Usage: `npm start`  (port 5000, host 0.0.0.0)
+ * Usage: `npm start`  (port 3000, host 0.0.0.0)
  *        `PORT=8080 npm start`  (override)
  *
  * Behavior:
@@ -24,7 +24,7 @@ import { createServer } from "node:http";
 import { createReadStream, statSync, existsSync, readFileSync } from "node:fs";
 import { extname, join, normalize, resolve, sep } from "node:path";
 
-const PORT = Number(process.env.PORT) || 5000;
+const PORT = Number(process.env.PORT) || 3000;
 const HOST = process.env.HOST || "0.0.0.0";
 const ROOT = resolve(process.cwd(), "dist");
 
