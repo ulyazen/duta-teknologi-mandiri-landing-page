@@ -9,8 +9,17 @@ createRoot(document.getElementById("root")!).render(
   </StrictMode>,
 );
 
-// Reveal-on-scroll observer. Adds `is-revealed` to every element with
-// the `reveal` or `reveal-stagger` class once it enters the viewport.
+// Reveal-on-scroll observer. Sets `html.js` (which makes the .reveal
+// hidden start state active in CSS), then adds `is-revealed` to every
+// `reveal` / `reveal-stagger` element as it enters the viewport.
+//
+// Default CSS state is visible — the page works without JS, screenshots
+// capture the final state, and SSR / no-JS visitors see the full page.
+// Setting `html.js` opts into the hidden start state, so the observer
+// can fade each element in. There's a brief flash of the visible state
+// on JS-enabled loads, which is the trade-off for the page being
+// resilient to the observer never firing.
+//
 // For visual review (Playwright fullPage screenshots, etc.) we add
 // `?reveal=all` to the URL to reveal everything immediately.
 function setupRevealObserver(): void {
@@ -18,6 +27,7 @@ function setupRevealObserver(): void {
   const forceReveal =
     new URLSearchParams(window.location.search).get("reveal") === "all";
   if (forceReveal) {
+    document.documentElement.classList.add("js");
     document
       .querySelectorAll(".reveal, .reveal-stagger")
       .forEach((el) => el.classList.add("is-revealed"));
@@ -29,6 +39,7 @@ function setupRevealObserver(): void {
       .forEach((el) => el.classList.add("is-revealed"));
     return;
   }
+  document.documentElement.classList.add("js");
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {

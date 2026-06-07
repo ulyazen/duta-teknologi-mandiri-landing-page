@@ -166,27 +166,36 @@
     background-size: 24px 24px;
     background-position: 0 0;
   }
-  /* Reveal-on-scroll utility. Elements start invisible + slightly
-   * translated; the IntersectionObserver in main.tsx adds .is-revealed
-   * when they enter the viewport, triggering a CSS transition. */
-  .reveal {
+  /* Reveal-on-scroll utility (progressive enhancement). Default state
+   * is visible — content shows up immediately, even without JS, and
+   * screenshots / no-JS visitors see the full page.
+   *
+   * When the `js` class is added to <html> by main.tsx, the hidden
+   * start state is opted into, and the IntersectionObserver toggles
+   * `is-revealed` to fade each element in as it enters the viewport.
+   *
+   * The brief flash of unstyled content on JS-enabled loads is a
+   * trade-off: the alternative (always-hidden) breaks the page for
+   * every visitor whose IntersectionObserver is slow, never fires,
+   * or is shadowed by the React mount. */
+  html.js .reveal {
     opacity: 0;
     transform: translateY(14px);
     transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     transition-delay: var(--reveal-delay, 0ms);
   }
-  .reveal.is-revealed {
+  html.js .reveal.is-revealed {
     opacity: 1;
     transform: translateY(0);
   }
-  .reveal-stagger > * {
+  html.js .reveal-stagger > * {
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .reveal-stagger.is-revealed > * {
+  html.js .reveal-stagger.is-revealed > * {
     opacity: 1;
     transform: translateY(0);
   }
@@ -249,8 +258,8 @@
   .animate-fade-in,
   .animate-fade-up,
   .animate-pulse-soft,
-  .reveal,
-  .reveal-stagger > * {
+  html.js .reveal,
+  html.js .reveal-stagger > * {
     animation: none;
     transition: none;
     opacity: 1;
