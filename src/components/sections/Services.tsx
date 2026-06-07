@@ -1,6 +1,6 @@
-import type { PublicSection } from "../../lib/cms-types";
-import { Card } from "../ui/Card";
-import { Globe, Coins, Truck, Boxes, ClipboardList, ShieldCheck, ArrowUpRight } from "lucide-react";
+import type { PublicSection } from"../../lib/cms-types";
+import { Card } from"../ui/Card";
+import { Globe, Coins, Truck, Boxes, ClipboardList, ShieldCheck, ArrowUpRight } from"lucide-react";
 
 interface ServicesProps { section: PublicSection; }
 
@@ -21,7 +21,7 @@ export function Services({ section }: ServicesProps) {
         03
       </span>
       <div className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
-        <div className="reveal mb-16 max-w-2xl">
+        <div className="mb-16 max-w-2xl">
           <p className="label-uppercase accent-rule mb-6">Services</p>
           <h2
             id={`${section.sectionKey.toLowerCase()}-title`}
@@ -35,7 +35,7 @@ export function Services({ section }: ServicesProps) {
             </p>
           )}
         </div>
-        <div className="reveal-stagger grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {section.items.map((item, i) => {
             const Icon = ICON_BY_INDEX[i % ICON_BY_INDEX.length];
             return (

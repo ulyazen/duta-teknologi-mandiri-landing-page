@@ -1,8 +1,12 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { ArrowRight } from "lucide-react";
 import { site } from "../../content/site";
 import type { Locale } from "../../lib/cms-types";
+
+const FIELD_CLASS =
+  "w-full rounded-card border border-border bg-surface px-4 py-3 text-base text-primary transition-colors focus:outline-none focus:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
 
 const contactSchema = z.object({
   name: z.string().min(1, "required").max(120),
@@ -88,35 +92,40 @@ export function ContactForm({ locale }: ContactFormProps) {
 
       <div>
         <label htmlFor="cf-name" className="label-uppercase block mb-2">{labels.name}</label>
-        <input id="cf-name" type="text" autoComplete="name" className="w-full rounded-card border border-border bg-surface px-4 py-3 text-base text-primary focus:outline-none focus:border-accent" {...register("name")} />
+        <input id="cf-name" type="text" autoComplete="name" className={FIELD_CLASS} {...register("name")} />
         {errors.name && <p className="mt-1 text-sm text-error" role="alert">{errors.name.message === "required" ? labels.required : errors.name.message}</p>}
       </div>
 
       <div>
         <label htmlFor="cf-email" className="label-uppercase block mb-2">{labels.email}</label>
-        <input id="cf-email" type="email" autoComplete="email" className="w-full rounded-card border border-border bg-surface px-4 py-3 text-base text-primary focus:outline-none focus:border-accent" {...register("email")} />
+        <input id="cf-email" type="email" autoComplete="email" className={FIELD_CLASS} {...register("email")} />
         {errors.email && <p className="mt-1 text-sm text-error" role="alert">{errors.email.message === "invalid" ? labels.invalid : errors.email.message}</p>}
       </div>
 
       <div>
         <label htmlFor="cf-company" className="label-uppercase block mb-2">{labels.company}</label>
-        <input id="cf-company" type="text" autoComplete="organization" className="w-full rounded-card border border-border bg-surface px-4 py-3 text-base text-primary focus:outline-none focus:border-accent" {...register("company")} />
+        <input id="cf-company" type="text" autoComplete="organization" className={FIELD_CLASS} {...register("company")} />
       </div>
 
       <div>
         <label htmlFor="cf-parts" className="label-uppercase block mb-2">{labels.parts}</label>
-        <input id="cf-parts" type="text" placeholder={labels.partsHint} className="w-full rounded-card border border-border bg-surface px-4 py-3 text-base text-primary focus:outline-none focus:border-accent" {...register("parts")} />
+        <input id="cf-parts" type="text" placeholder={labels.partsHint} className={FIELD_CLASS} {...register("parts")} />
         {errors.parts && <p className="mt-1 text-sm text-error" role="alert">{errors.parts.message}</p>}
       </div>
 
       <div>
         <label htmlFor="cf-message" className="label-uppercase block mb-2">{labels.message}</label>
-        <textarea id="cf-message" rows={6} className="w-full rounded-card border border-border bg-surface px-4 py-3 text-base text-primary focus:outline-none focus:border-accent" {...register("message")} />
+        <textarea id="cf-message" rows={6} className={FIELD_CLASS} {...register("message")} />
         {errors.message && <p className="mt-1 text-sm text-error" role="alert">{errors.message.message}</p>}
       </div>
 
-      <button type="submit" disabled={isSubmitting} className="btn-solid">
+      <button type="submit" disabled={isSubmitting} className="btn-solid group">
         {labels.submit}
+        <ArrowRight
+          size={16}
+          aria-hidden="true"
+          className="transition-transform duration-200 group-hover:translate-x-0.5"
+        />
       </button>
     </form>
   );

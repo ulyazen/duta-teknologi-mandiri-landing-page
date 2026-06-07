@@ -1,16 +1,12 @@
-import type { PublicSection } from "../../lib/cms-types";
-import { Card } from "../ui/Card";
-import { CheckCircle2 } from "lucide-react";
+import type { PublicSection } from"../../lib/cms-types";
+import { Card } from"../ui/Card";
+import { CheckCircle2 } from"lucide-react";
 
 interface AboutProps { section: PublicSection; }
 
 export function About({ section }: AboutProps) {
   if (!section.body) return null;
-  const bullets = [
-    "Capability across the full chain",
-    "Multi-currency purchasing in one system",
-    "Real-time stock visibility",
-    "Full audit trail on every order",
+  const bullets = ["Capability across the full chain","Multi-currency purchasing in one system","Real-time stock visibility","Full audit trail on every order",
   ];
   return (
     <section
@@ -25,7 +21,7 @@ export function About({ section }: AboutProps) {
         02
       </span>
       <div className="relative mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-2 md:py-32">
-        <div className="reveal">
+        <div >
           <p className="label-uppercase accent-rule mb-6">About</p>
           <h2 id={`${section.sectionKey.toLowerCase()}-title`} className="text-display-lg text-primary">
             {section.title}
@@ -39,7 +35,7 @@ export function About({ section }: AboutProps) {
             {section.body}
           </p>
         </div>
-        <Card bordered className="reveal-stagger self-start [--reveal-delay:120ms]">
+        <Card bordered className="self-start">
           <p className="label-uppercase mb-4">What you get</p>
           <ul className="space-y-3">
             {bullets.map((b) => (

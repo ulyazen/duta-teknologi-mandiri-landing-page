@@ -1,16 +1,16 @@
-import type { PublicSection } from "../../lib/cms-types";
+import type { PublicSection } from"../../lib/cms-types";
 
 interface GalleryProps { section: PublicSection; }
 
 export function Gallery({ section }: GalleryProps) {
-  const items = section.items.filter((i) => i.type === "GALLERY_IMAGE");
+  const items = section.items.filter((i) => i.type ==="GALLERY_IMAGE");
   if (items.length === 0 && !section.imageUrl) return null;
   const images =
     items.length > 0
       ? items
       : [
           {
-            type: "GALLERY_IMAGE" as const,
+            type:"GALLERY_IMAGE" as const,
             title: null,
             description: null,
             imageUrl: section.imageUrl,
@@ -34,7 +34,7 @@ export function Gallery({ section }: GalleryProps) {
         07
       </span>
       <div className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
-        <div className="reveal mb-16 max-w-2xl">
+        <div className="mb-16 max-w-2xl">
           <p className="label-uppercase accent-rule mb-6">Gallery</p>
           <h2
             id={`${section.sectionKey.toLowerCase()}-title`}
@@ -48,7 +48,7 @@ export function Gallery({ section }: GalleryProps) {
             </p>
           )}
         </div>
-        <ul className="reveal-stagger grid grid-cols-2 gap-4 md:grid-cols-3">
+        <ul className="grid grid-cols-2 gap-4 md:grid-cols-3">
           {images.map((item, i) =>
             item.imageUrl ? (
               <li
@@ -57,7 +57,7 @@ export function Gallery({ section }: GalleryProps) {
               >
                 <img
                   src={item.imageUrl}
-                  alt={item.imageAlt ?? ""}
+                  alt={item.imageAlt ??""}
                   loading="lazy"
                   decoding="async"
                   width={400}

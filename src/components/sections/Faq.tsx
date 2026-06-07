@@ -1,4 +1,4 @@
-import type { PublicSection } from "../../lib/cms-types";
+import type { PublicSection } from"../../lib/cms-types";
 
 interface FaqProps { section: PublicSection; }
 
@@ -17,7 +17,7 @@ export function Faq({ section }: FaqProps) {
         08
       </span>
       <div className="relative mx-auto max-w-3xl px-6 py-24 md:py-32">
-        <div className="reveal mb-12">
+        <div className="mb-12">
           <p className="label-uppercase accent-rule mb-6">FAQ</p>
           <h2
             id={`${section.sectionKey.toLowerCase()}-title`}
@@ -31,7 +31,7 @@ export function Faq({ section }: FaqProps) {
             </p>
           )}
         </div>
-        <div className="reveal-stagger divide-y divide-border border-y border-border">
+        <div className="divide-y divide-border border-y border-border">
           {section.items.map((item, i) => (
             <details
               key={i}

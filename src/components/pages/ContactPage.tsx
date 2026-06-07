@@ -1,12 +1,12 @@
-import { Nav } from "../layout/Nav";
-import { Footer } from "../layout/Footer";
-import { ContactForm } from "../contact/ContactForm";
-import { Card } from "../ui/Card";
-import { site } from "../../content/site";
-import { id as idContent } from "../../content/id";
-import { en as enContent } from "../../content/en";
-import type { Locale } from "../../lib/cms-types";
-import { Clock, FileCheck2, MessagesSquare } from "lucide-react";
+import { Nav } from"../layout/Nav";
+import { Footer } from"../layout/Footer";
+import { ContactForm } from"../contact/ContactForm";
+import { Card } from"../ui/Card";
+import { site } from"../../content/site";
+import { id as idContent } from"../../content/id";
+import { en as enContent } from"../../content/en";
+import type { Locale } from"../../lib/cms-types";
+import { Clock, FileCheck2, MessagesSquare } from"lucide-react";
 
 interface ContactPageProps {
   locale: Locale;
@@ -16,7 +16,7 @@ interface ContactPageProps {
 const NEXT_ICONS = [Clock, FileCheck2, MessagesSquare];
 
 export function ContactPage({ locale, pathname }: ContactPageProps) {
-  const content = locale === "id" ? idContent : enContent;
+  const content = locale ==="id" ? idContent : enContent;
   const c = content.contact;
   return (
     <>
@@ -37,7 +37,7 @@ export function ContactPage({ locale, pathname }: ContactPageProps) {
             11
           </span>
           <div className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
-            <div className="reveal max-w-3xl">
+            <div className="max-w-3xl">
               <p className="label-uppercase accent-rule mb-6">{c.eyebrow}</p>
               <h1 id="contact-title" className="text-display-xl text-gradient">
                 {c.title}
@@ -48,10 +48,10 @@ export function ContactPage({ locale, pathname }: ContactPageProps) {
             </div>
 
             <div className="mt-16 grid gap-12 md:grid-cols-[1.4fr_1fr] md:items-start">
-              <div className="reveal [--reveal-delay:120ms]">
+              <div >
                 <ContactForm locale={locale} />
               </div>
-              <div className="reveal [--reveal-delay:240ms] space-y-6">
+              <div className="space-y-6">
                 <p className="label-uppercase mb-2">{c.nextTitle}</p>
                 <Card bordered>
                   <ul className="space-y-4">
@@ -70,7 +70,7 @@ export function ContactPage({ locale, pathname }: ContactPageProps) {
                       {c.responseLead} <strong className="text-primary">{c.responseTime}</strong>.
                     </p>
                     <p className="mt-2">
-                      Email:{" "}
+                      Email:{""}
                       <a href={`mailto:${site.contactEmail}`} className="text-accent hover:underline">
                         {site.contactEmail}
                       </a>

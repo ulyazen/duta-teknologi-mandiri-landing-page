@@ -1,5 +1,5 @@
-import type { PublicSection } from "../../lib/cms-types";
-import { parseStatsSubtitle } from "../../lib/parse-stats-subtitle";
+import type { PublicSection } from"../../lib/cms-types";
+import { parseStatsSubtitle } from"../../lib/parse-stats-subtitle";
 
 interface StatsProps { section: PublicSection; }
 
@@ -19,7 +19,7 @@ export function Stats({ section }: StatsProps) {
         06
       </span>
       <div className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
-        <div className="reveal mb-16 max-w-2xl">
+        <div className="mb-16 max-w-2xl">
           <p className="label-uppercase accent-rule mb-6">Stats</p>
           <h2
             id={`${section.sectionKey.toLowerCase()}-title`}
@@ -28,7 +28,7 @@ export function Stats({ section }: StatsProps) {
             {section.title}
           </h2>
         </div>
-        <dl className="reveal-stagger grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s, i) => (
             <div
               key={i}

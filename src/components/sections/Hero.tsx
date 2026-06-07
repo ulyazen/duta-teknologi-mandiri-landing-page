@@ -39,17 +39,17 @@ export function Hero({ section }: HeroProps) {
             </p>
             <h1
               id={`${section.sectionKey.toLowerCase()}-title`}
-              className="text-display-hero text-gradient animate-fade-up"
+              className="text-display-hero text-gradient"
             >
               {section.title}
             </h1>
             {section.subtitle && (
-              <p className="mt-8 max-w-xl text-lg leading-relaxed text-secondary animate-fade-up [animation-delay:80ms]">
+              <p className="mt-8 max-w-xl text-lg leading-relaxed text-secondary">
                 {section.subtitle}
               </p>
             )}
             {section.ctaText && section.ctaLink && (
-              <div className="mt-10 flex flex-wrap items-center gap-4 animate-fade-up [animation-delay:160ms]">
+              <div className="mt-10 flex flex-wrap items-center gap-4">
                 <a href={section.ctaLink} className="btn-solid">
                   {section.ctaText}
                   <ArrowRight size={16} aria-hidden="true" />
@@ -66,7 +66,7 @@ export function Hero({ section }: HeroProps) {
            * dashboard's media library); fall back to the Cohere-style
            * "command deck" stat strip when no image is provided. */}
           {section.imageUrl ? (
-            <div className="hidden animate-fade-up md:block [animation-delay:160ms]">
+            <div className="hidden md:block">
               <figure className="overflow-hidden rounded-card border border-border bg-snow">
                 <img
                   src={section.imageUrl}
@@ -87,12 +87,8 @@ export function Hero({ section }: HeroProps) {
                   { label: "Currencies", value: "Multi" },
                   { label: "Stock", value: "Real-time" },
                   { label: "Audit", value: "100%" },
-                ].map((s, i) => (
-                  <div
-                    key={s.label}
-                    className="card-bordered p-5 animate-fade-up"
-                    style={{ animationDelay: `${120 + i * 60}ms` }}
-                  >
+                ].map((s) => (
+                  <div key={s.label} className="card-bordered p-5">
                     <p className="label-uppercase">{s.label}</p>
                     <p className="mt-2 text-2xl font-display text-primary">
                       {s.value}

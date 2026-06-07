@@ -1,4 +1,4 @@
-import type { PublicSection } from "../../lib/cms-types";
+import type { PublicSection } from"../../lib/cms-types";
 
 interface ProcessProps { section: PublicSection; }
 
@@ -17,7 +17,7 @@ export function Process({ section }: ProcessProps) {
         05
       </span>
       <div className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
-        <div className="reveal mb-16 max-w-2xl">
+        <div className="mb-16 max-w-2xl">
           <p className="label-uppercase accent-rule mb-6">Process</p>
           <h2
             id={`${section.sectionKey.toLowerCase()}-title`}
@@ -31,14 +31,14 @@ export function Process({ section }: ProcessProps) {
             </p>
           )}
         </div>
-        <ol className="reveal-stagger relative grid gap-6 md:grid-cols-2">
+        <ol className="relative grid gap-6 md:grid-cols-2">
           {section.items.map((item, i) => (
             <li
               key={i}
               className="group relative card-primary p-8 transition-all duration-300 hover:border-primary hover:shadow-[0_16px_40px_-20px_rgba(23,23,28,0.18)]"
             >
               <span className="font-mono text-sm text-muted transition-colors duration-200 group-hover:text-accent">
-                {String(i + 1).padStart(2, "0")}
+                {String(i + 1).padStart(2,"0")}
               </span>
               {item.title && (
                 <h3 className="mt-2 text-xl text-primary">{item.title}</h3>
